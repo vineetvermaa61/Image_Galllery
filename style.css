@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#wrapper{
+    height: 100vh;  /* sabse bahar ha wrapper keval viewPort jitna visible hona chahiye */
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.container{
+    height: 100%;  /* container scroll karne par poora dikhna chaiye neeche tak */
+    max-width: 900px; /* agar isse kam content hai to width apne aap kam ho jayegi */
+    margin: 0 auto; /* up/down se 0 aur left/right se auto fitting */
+    padding: 20px;
+    /* border: 2px solid red; */
+}
+
+.container h1{
+    margin: 20px 0; /* top/bottom  , left/right */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 3rem;
+}
+
+.gallery{
+    display: flex;
+    flex-wrap: wrap; /* agar element same row mein nahi a pa rahe to next line main a jayenge */
+    justify-content: space-between;
+}
+
+.card{
+    width: 32%; /* card class ki width set ki hai image ki nahi, 96% for card and 4% for space-between */
+    position: relative; /* kyonki iske upar text overlap karana, aur text ko overlap karane ke liye uska nearest neighbour relative hona chahiye aur text ko absolute kar denge */
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden; /* kisi bhi tarah ka overflow ho card ke bahar to use hide kardo, nahi to image bahar nikal sakti hai */
+}
+
+.card img{
+    width: 100%;  /* width 100% -> matlab mere current element ki width POORI utni kardo jitni uske parent element ki hai */
+    height: 100%;
+    filter: grayscale(100%); /* images black & white ho jayengi */
+    box-shadow: 0 0 20 #333;
+    object-fit: cover;  /* images perfectly fit ho jayengi card par har side se */
+}
+
+.card:hover{
+    transform: scale(1.03); /* zoom the image  */
+    transition: 0.3s; /* speed slow the hover */
+    filter: drop-shadow(0 0 10px #333); /* acts just like box-shadow  */
+}
+
+.card:hover img{
+    filter: grayscale(0%); /* color the image */
+} 
+
+.card figcaption{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 25px;
+    width: 100%; 
+    height: 20%; /* parent ka 20% */
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    opacity: 0; /* taaki text yahan hidden rahe */
+    border-radius: 0 0 10px 10px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+    transition: 0.3s;
+}
+
+.card:hover figcaption{
+    opacity: 1; /* hidden items will show */
+    transform: scale(1.03); /* figcaption mein jo kuch bhi hai zoom ho jayega */
+}
